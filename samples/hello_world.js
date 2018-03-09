@@ -1,5 +1,7 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var text = "Ala";
+var buildPersonData_1 = require("./buildPersonData");
 var sayHello = function (message) {
     console.log(message);
 };
@@ -52,6 +54,7 @@ var personData2 = {
 };
 var fullAddress = partialAddress.concat(["Staples Center"]);
 buildPersonData(personData2, fullAddress);
-var fullAddress2 = partialAddress.concat(["Staples Center"]);
+var fullAddress2 = partialAddress.concat(["Staples Center", "buildPersonData2"]);
 buildPersonData(personData2, fullAddress2);
+console.log(buildPersonData_1.buildPersonData2(personData2, fullAddress2));
 //# sourceMappingURL=hello_world.js.map

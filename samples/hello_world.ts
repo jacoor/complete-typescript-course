@@ -1,5 +1,6 @@
-let text = "Ala"
+let text = "Ala";
 
+import {buildPersonData2} from "./buildPersonData";
 
 const sayHello = (message:string) => {
     console.log(message);
@@ -79,6 +80,8 @@ const fullAddress = partialAddress.concat(["Staples Center"]);
 
 buildPersonData(personData2, fullAddress);
 
-const fullAddress2 = [...partialAddress, "Staples Center"];
+const fullAddress2 = [...partialAddress, "Staples Center", "buildPersonData2"];
 
 buildPersonData(personData2, fullAddress2);
+
+console.log(buildPersonData2(personData2, fullAddress2));

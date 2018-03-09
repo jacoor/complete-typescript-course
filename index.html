@@ -8,6 +8,24 @@
         <link rel="author" href="humans.txt">
     </head>
     <body>
-        <script src="./samples/hello_world.js"></script>
+        <script src="https://npmcdn.com/systemjs/dist/system.src.js"></script>
+        <!-- <script src="./samples/hello_world.js"></script> -->
+        <script>
+            System.config({
+                "defaultExtension": "js",
+            });
+
+            SystemJS.config({
+              packages: {
+                // meaning [baseURL]/local/package when no other rules are present
+                // path is normalized using map and paths configuration
+                'samples': {
+                  main: 'hello_world.js',
+                  defaultExtension: 'js',
+                }
+              }
+            });
+            System.import("/samples/hello_world");
+        </script>
     </body>
 </html>
