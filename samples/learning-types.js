@@ -24,8 +24,19 @@ var personFromType = {
     firstName: "Kobe",
     lastName: "Bryant",
 };
+;
 var personWithOptionalName = {
-    lastname: "Doe",
+    lastName: "Doe",
+};
+var personWithOptionalName2 = {
+    lastName: "Doe",
 };
 console.log(personWithOptionalName);
+console.log(personWithOptionalName2);
+var personWithAddress = {
+    name: {
+        lastName: "Smith",
+    },
+};
+console.log(personWithAddress);
 //# sourceMappingURL=learning-types.js.map

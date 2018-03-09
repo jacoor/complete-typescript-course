@@ -11,12 +11,12 @@ console.log(message);
 let person = {
     firstName: "Kobe",
     lastName: "Bryant",
-}
+};
 
 let personWithTypes: {firstName:string, lastName:string} = {
     firstName: "Kobe",
     lastName: "Bryant",
-}
+};
 
 //person.address = "alamaszkara"; //error, no address on type "person";
 //notes"
@@ -25,7 +25,7 @@ let personWithTypes: {firstName:string, lastName:string} = {
 let personWithAnyData: any ={
     firstName: "Kobe",
     lastName: "Bryant",
-}
+};
 
 personWithAnyData.address = "some address data";  // this one works as personWithAnyData has type "Any";
 
@@ -36,15 +36,47 @@ type hasName = {firstName:string, lastName:string};
 let personFromType: hasName = {
     firstName: "Kobe",
     lastName: "Bryant",
-}
+};
 
 // note: property "address" is not here so it will generate error if you try to add it to personFromType;
 
 //optional fields:
 
-type hasNameOptional = {firstName?:string, lastname:string};
+type hasNameOptional = {firstName?:string, lastName:string};
 
-let personWithOptionalName = {
-    lastname: "Doe",
-}
+// type can also be defined as "interface"
+
+interface hasNameOptionalInterface {
+    firstName?:string,
+    lastName: string,
+};
+
+let personWithOptionalName: hasNameOptional = {
+    lastName: "Doe",
+};
+
+let personWithOptionalName2: hasNameOptionalInterface = {
+    lastName: "Doe",
+};
+
 console.log(personWithOptionalName);
+console.log(personWithOptionalName2);
+
+// combining types together
+
+type hasAddress = {
+    street: string,
+}
+
+type PersonWithAddress = {
+    name: hasNameOptional,
+    address?: hasAddress,
+}
+
+let personWithAddress:PersonWithAddress = {
+    name: {
+        lastName: "Smith",
+    },
+}
+
+console.log(personWithAddress);
