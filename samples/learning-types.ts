@@ -129,7 +129,7 @@ console.log(message4);
 
 let persons:string[] = ["Kobe", "John", "Shaq"];
 let counters:number[] = [1, 2, 3];
-//won't work 
+//won't work
 //counters = persons;
 
 let tuple = ["string", 1];
@@ -141,7 +141,7 @@ let tuple1: PlayerTuple = ["name", 1];
 type ThreeNames = [string, string, string];
 
 let tuple3: ThreeNames =["ala", "ma", "kota"];
-    
+
 // enums
 
 // 0 - Guard, 1 - Forward, 2 - Center
@@ -151,7 +151,7 @@ let tuple3: ThreeNames =["ala", "ma", "kota"];
 enum PlayerPosition {
     Guard,
     Forward,
-    Center, 
+    Center,
 }
 
 let kobe: PlayerTuple = ["Kobe", PlayerPosition["Guard"]];  //option 1.
@@ -166,7 +166,7 @@ interface Player {
     position: PlayerPosition,
 }
 
-// these two won't work, compiler cries an error. It probably works in old version of ts. 
+// these two won't work, compiler cries an error. It probably works in old version of ts.
 // to make it work "or" statement is necessary.
 let kobe1:Player | null | undefined = {
     name: "Kobe",
@@ -217,7 +217,7 @@ let myCounter = 0;
 counter = myVar; // yea, and it's undefined!;
 
 let str: string = "";
-str = myVar;  // and it's still any, ie object. 
+str = myVar;  // and it's still any, ie object.
 
 // implicit any compiler option
 
@@ -226,7 +226,7 @@ const playerWithoutType = {
     lastName: "Johnson",
     street: "Staples"
 }
- // with NoImplicitAny tsc option compiler will automatically determine the type of playerWithoutType here as the 
+ // with NoImplicitAny tsc option compiler will automatically determine the type of playerWithoutType here as the
  // json object above.
 
 // more examples
@@ -234,16 +234,70 @@ const playerWithoutType = {
 function createAnyTypeMessage(message: string){  // string added manually
 }
 
-// main takeaway: tsc in previous versions didn't throw an error if types were not defined, 
-// for backwards compatibility. Using the implicitAny option forces compiler to throw an error when 
-// the type on variable is not defined. 
+// main takeaway: tsc in previous versions didn't throw an error if types were not defined,
+// for backwards compatibility. Using the implicitAny option forces compiler to throw an error when
+// the type on variable is not defined.
 
 // how to handle 3rd party libraries? Defining types for those is simply impossible as those are often
-// written in plain JS or simply are too big to fix. 
+// written in plain JS or simply are too big to fix.
 // As an example lodash library is used
 
-const _ = require("lodash");
+import * as _ from "lodash";
 
 const colors = ["Red", "Green", "Blue"];
 
 console.log(_.first(colors));
+
+// introducing "never" and "void" types
+function throwError(message:string):never{
+  throw new Error("Message not available");
+}
+
+let errorMsg:never = throwError("doesn't work!");
+
+console.log(errorMsg);
+
+// let another_counter: number = message;  // doesnt work
+
+let another_counter: number = 0;
+
+// errorMsg  = another_counter;  // doesnt work as expected
+
+// void return type -> functions that return nothing
+
+function throwErrorVoid(message:string):void{
+  throw new Error("Message not available");
+}
+
+// actually a note on void. If the function is returning void then it is creating
+// side effect -> function should modify what was given to them, not alter external
+// values
+
+// when are types compatilble witch each other?
+
+
+interface ex1 {
+  firstName: string,
+  lastName: string
+}
+interface ex2 {
+  firstName: string,
+  lastName: string
+}
+
+let testPerson:ex1 = {firstName: "ala", lastName:"makota"};
+
+let testPerson2:ex2 = testPerson;
+// wow -> how does it work? different interfaces!
+// js compares interfaces and types by values, not names, so they have the same
+// value so they are compatible.
+
+// interesting: this will work:
+interface ex3 {
+  firstName: string,
+}
+
+let testPerson3 = testPerson;
+// why? because ex1 has more properties than ex3 and ex1 also has all props
+// of ext 3.
+// other way around it will not work because of missing data in ext3.
