@@ -54,7 +54,7 @@ person.sayHiArrow()
 // object destructuring
 
 function buildPersonData({firstName, lastName}:any, address = [""]){
-  return firstName + " " + lastName +" "+ address; 
+  return firstName + " " + lastName +" "+ address;
 }
 
 const personData = {
@@ -74,7 +74,6 @@ const personData2 = {
   firstName,
   lastName
 };
-
 
 const fullAddress = partialAddress.concat(["Staples Center"]);
 
