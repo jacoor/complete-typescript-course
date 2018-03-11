@@ -83,14 +83,14 @@ console.log(personWithAddress);
 
 // in typescript and in js functions are valid variables
 
-function createHelloMessage(name){
+function createHelloMessage(name:string){
     return `Hello, my name  is ${name}`;
 }
 
 let hello = createHelloMessage;
 console.log(hello("Jacek"));
 
-console.log(hello({firstName:"Jacek"})); // thats bad.
+// console.log(hello({firstName:"Jacek"})); // thats bad.
 
 
 function safeCreateHelloMessage(name:string, extra?: number) :string{  //last "string" defines output type

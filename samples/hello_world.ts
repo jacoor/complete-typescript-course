@@ -53,7 +53,7 @@ person.sayHiArrow()
 
 // object destructuring
 
-function buildPersonData({firstName, lastName}, address = [""]){
+function buildPersonData({firstName, lastName}:any, address = [""]){
   return firstName + " " + lastName +" "+ address; 
 }
 
