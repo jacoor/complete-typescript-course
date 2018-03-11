@@ -12,5 +12,8 @@
   "devDependencies": {
     "http-server": "^0.11.1",
     "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
   }
 }
