@@ -240,3 +240,10 @@ function createAnyTypeMessage(message: string){  // string added manually
 
 // how to handle 3rd party libraries? Defining types for those is simply impossible as those are often
 // written in plain JS or simply are too big to fix. 
+// As an example lodash library is used
+
+const _ = require("lodash");
+
+const colors = ["Red", "Green", "Blue"];
+
+console.log(_.first(colors));
