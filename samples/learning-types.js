@@ -83,4 +83,59 @@ var james = ["James", PlayerPosition.Forward]; //option 2.
 var shaq = ["Shaq", PlayerPosition.Center];
 var players = [kobe, james, shaq];
 console.log(players);
+// these two won't work, compiler cries an error. It probably works in old version of ts. 
+// to make it work "or" statement is necessary.
+var kobe1 = {
+    name: "Kobe",
+    position: PlayerPosition["Guard"]
+};
+console.log(kobe1);
+kobe1 = null;
+kobe1 = undefined;
+// control flow analysis in action
+function createMessage(name) {
+    if (name) {
+        return "Hello, my name  is " + name;
+    }
+    // typescript control flow complains here that there is no return statement.
+    // the reality is that the program returns undefined which is not what tsc expects.
+    return "";
+}
+console.log(createMessage("Bob"));
+var player = {
+    firstName: "Magic",
+    lastName: "Johnson",
+    street: "Staples"
+};
+console.log(player);
+var myVar;
+myVar = 0;
+myVar = "a";
+myVar = {};
+myVar = [];
+myVar = null;
+myVar = undefined;
+myVar = {};
+// you can assign variable with type Any to any other variable (which is not so obvious);
+var myCounter = 0;
+counter = myVar; // yea, and it's undefined!;
+var str = "";
+str = myVar; // and it's still any, ie object. 
+// implicit any compiler option
+var playerWithoutType = {
+    firstName: "Magic",
+    lastName: "Johnson",
+    street: "Staples"
+};
+// with NoImplicitAny tsc option compiler will automatically determine the type of playerWithoutType here as the 
+// json object above.
+// more examples
+// in this case tsc returns an error and automatically assigns any type to this variable "message";
+function createAnyTypeMessage(message) {
+}
+// main takeaway: tsc in previous versions didn't throw an error if types were not defined, 
+// for backwards compatibility. Using the implicitAny option forces compiler to throw an error when 
+// the type on variable is not defined. 
+// how to handle 3rd party libraries? Defining types for those is simply impossible as those are often
+// written in plain JS or simply are too big to fix. 
 //# sourceMappingURL=learning-types.js.map

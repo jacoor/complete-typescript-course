@@ -148,8 +148,6 @@ let tuple3: ThreeNames =["ala", "ma", "kota"];
 
 // using player from previous example
 
-
-
 enum PlayerPosition {
     Guard,
     Forward,
@@ -163,6 +161,82 @@ let shaq: PlayerTuple = ["Shaq", PlayerPosition.Center];
 let players:PlayerTuple[] = [kobe, james, shaq];
 console.log(players);
 
+interface Player {
+    name: string,
+    position: PlayerPosition,
+}
 
+// these two won't work, compiler cries an error. It probably works in old version of ts. 
+// to make it work "or" statement is necessary.
+let kobe1:Player | null | undefined = {
+    name: "Kobe",
+    position: PlayerPosition["Guard"]
+}
 
+console.log(kobe1);
+kobe1 = null;
+kobe1 = undefined;
 
+// control flow analysis in action
+
+function createMessage(name:string):string{
+    if (name){
+        return `Hello, my name  is ${name}`;
+    }
+    // typescript control flow complains here that there is no return statement.
+    // the reality is that the program returns undefined which is not what tsc expects.
+    return "";
+}
+
+console.log(createMessage("Bob"));
+
+// introducing any type
+
+type PlayerType = (hasName & hasAddress) | null;
+const player: PlayerType = {
+    firstName: "Magic",
+    lastName: "Johnson",
+    street: "Staples"
+}
+
+console.log(player);
+
+let myVar: any;
+
+myVar = 0;
+myVar = "a";
+myVar = {};
+myVar = [];
+myVar = null;
+myVar = undefined;
+myVar = {};
+
+// you can assign variable with type Any to any other variable (which is not so obvious);
+
+let myCounter = 0;
+counter = myVar; // yea, and it's undefined!;
+
+let str: string = "";
+str = myVar;  // and it's still any, ie object. 
+
+// implicit any compiler option
+
+const playerWithoutType = {
+    firstName: "Magic",
+    lastName: "Johnson",
+    street: "Staples"
+}
+ // with NoImplicitAny tsc option compiler will automatically determine the type of playerWithoutType here as the 
+ // json object above.
+
+// more examples
+// in this case tsc returns an error and automatically assigns any type to this variable "message";
+function createAnyTypeMessage(message: string){  // string added manually
+}
+
+// main takeaway: tsc in previous versions didn't throw an error if types were not defined, 
+// for backwards compatibility. Using the implicitAny option forces compiler to throw an error when 
+// the type on variable is not defined. 
+
+// how to handle 3rd party libraries? Defining types for those is simply impossible as those are often
+// written in plain JS or simply are too big to fix. 
