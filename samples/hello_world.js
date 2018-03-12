@@ -43,7 +43,7 @@ function buildPersonData(_a, address) {
 var personData = {
     firstName: "Kobe",
     lastName: "Bryant",
-    address: "Staples Center"
+    address: "Staples Center",
 };
 buildPersonData(personData);
 var firstName = "Kobe", lastName = "Bryant";

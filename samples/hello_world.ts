@@ -60,7 +60,7 @@ function buildPersonData({firstName, lastName}:any, address = [""]){
 const personData = {
   firstName: "Kobe",
   lastName: "Bryant",
-  address: "Staples Center"
+  address: "Staples Center",
 };
 
 buildPersonData(personData);
