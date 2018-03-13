@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "express": "^4.16.2",
+    "human-readable-ids": "^1.0.3",
     "lodash": "^4.17.5",
     "pg": "^7.4.1",
     "sequelize": "^4.36.0"
