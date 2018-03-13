@@ -4,6 +4,7 @@ import { apiGetAllCourses } from "./apiGetAllCourses";
 import { apiGetCourseDetail } from "./apiGetCourseDetail";
 import { apiCreateLesson } from "./apiCreateLesson";
 import { apiPatchLesson } from "./apiPatchLesson";
+import { apiDeleteLesson } from "./apiDeleteLesson";
 
 export function initRestApi(app:Application){
 
@@ -16,4 +17,7 @@ export function initRestApi(app:Application){
 
   //update lesson
   app.route("/api/lesson/:id").patch(apiPatchLesson);
+
+  // delete lesson
+  app.route("/api/lesson/:id").delete(apiDeleteLesson);
 }

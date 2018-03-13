@@ -5,9 +5,7 @@ export function updateLesson(id: number, props: any){
   return LessonModel.update(
     props,
     {
-      where:{
-        id:id
-      }
+      where:{id}
     }
   );
 }
