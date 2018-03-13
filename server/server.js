@@ -8,6 +8,7 @@ var api_1 = require("./api/api");
 var apiErrorHandler_1 = require("./api/apiErrorHandler");
 // defining express application
 var app = express_1.default();
+app.use(express_1.default.json());
 api_1.initRestApi(app);
 // handling errors using middleware
 // note: this will not catch error from promise,

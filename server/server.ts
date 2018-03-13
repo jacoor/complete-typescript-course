@@ -8,6 +8,8 @@ import { apiErrorHandler } from "./api/apiErrorHandler";
 // defining express application
 const app: Application = express();
 
+app.use(express.json());
+
 initRestApi(app);
 
 // handling errors using middleware
