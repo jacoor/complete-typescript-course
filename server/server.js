@@ -9,7 +9,9 @@ var apiErrorHandler_1 = require("./api/apiErrorHandler");
 // defining express application
 var app = express_1.default();
 api_1.initRestApi(app);
-//handling errors using middleware
+// handling errors using middleware
+// note: this will not catch error from promise,
+// ie. from apiGetAllCourses promise
 app.use(apiErrorHandler_1.apiErrorHandler);
 app.listen(8090, function () {
     console.log("Server is running");

@@ -10,7 +10,9 @@ const app: Application = express();
 
 initRestApi(app);
 
-//handling errors using middleware
+// handling errors using middleware
+// note: this will not catch error from promise,
+// ie. from apiGetAllCourses promise
 app.use(apiErrorHandler);
 
 app.listen(8090, () => {
