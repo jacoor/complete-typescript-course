@@ -6,6 +6,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var LoggingLevel;
 (function (LoggingLevel) {
     LoggingLevel[LoggingLevel["INFO"] = 0] = "INFO";
@@ -51,10 +54,51 @@ var Database = /** @class */ (function () {
         console.log("Saving data to database: " + this.name + "  " + JSON.stringify(data));
     };
     __decorate([
-        LogMethod(LoggingLevel.DEBUG)
+        LogMethod(LoggingLevel.DEBUG),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
     ], Database.prototype, "saveData", null);
     return Database;
 }());
 var db = new Database();
 db.saveData({ "message": "Saving the data!" });
+// class decorators
+function registerORMModel(model) {
+    console.log("registering orm models " + model);
+}
+// class decorator itself
+function Entity(tableName) {
+    return function (target) {
+        // console.log("target: ", target);
+        // console.log("propertyKey: ", propertyKey);
+        // console.log("descriptor: ", descriptor);
+        registerORMModel(target);
+    };
+}
+// property decorator itself
+function Column(columnName) {
+    return function (target, propertyKey) {
+        console.log();
+        console.log("target", target);
+        console.log("propertyKey", propertyKey);
+        console.log();
+    };
+}
+// class decorator
+var ToDo = /** @class */ (function () {
+    function ToDo() {
+        //property decorators
+        this.description = "";
+        this.done = false;
+    }
+    __decorate([
+        Column("DESCR"),
+        __metadata("design:type", String)
+    ], ToDo.prototype, "description", void 0);
+    ToDo = __decorate([
+        Entity("TODOS")
+    ], ToDo);
+    return ToDo;
+}());
 //# sourceMappingURL=decorators.js.map

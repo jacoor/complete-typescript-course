@@ -49,3 +49,38 @@ class Database {
 const db = new Database();
 
 db.saveData({"message": "Saving the data!"});
+
+
+// class decorators
+function registerORMModel(model:Function){
+  console.log(`registering orm models ${model}`);
+}
+// class decorator itself
+function Entity(tableName: string){
+  return (
+    target: Function) => {
+      // console.log("target: ", target);
+      // console.log("propertyKey: ", propertyKey);
+      // console.log("descriptor: ", descriptor);
+      registerORMModel(target);
+  }
+}
+
+// property decorator itself
+function Column(columnName:string){
+  return (target:any, propertyKey:string) => {
+    console.log();
+    console.log("target", target);
+    console.log("propertyKey", propertyKey);
+    console.log();
+  }
+}
+
+// class decorator
+@Entity("TODOS")
+class ToDo {
+  //property decorators
+  @Column("DESCR")
+  description: string = "";
+  done = false;
+}
