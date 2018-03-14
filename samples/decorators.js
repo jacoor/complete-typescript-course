@@ -29,7 +29,7 @@ function LogMethod(level) {
             // important. Don't use arrow function to overwrite descriptor.value
             // because it will destroy reference to "this".
             // Instead, use old way with function(...args:any) as defined above.
-            // This is actually rare case where arrow function should be avoided.
+            // This is actually rare case where arrow function should not be used.
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
@@ -46,6 +46,7 @@ var Database = /** @class */ (function () {
     function Database() {
         this.name = "CTCDB";
     }
+    // method decorator
     Database.prototype.saveData = function (data) {
         console.log("Saving data to database: " + this.name + "  " + JSON.stringify(data));
     };

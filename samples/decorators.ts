@@ -25,7 +25,7 @@ function LogMethod(level:LoggingLevel):Function{
       // important. Don't use arrow function to overwrite descriptor.value
       // because it will destroy reference to "this".
       // Instead, use old way with function(...args:any) as defined above.
-      // This is actually rare case where arrow function should be avoided.
+      // This is actually rare case where arrow function should not be used.
 
       // Adding logging functionality
       if (level <= loggingLevel){
@@ -38,6 +38,7 @@ function LogMethod(level:LoggingLevel):Function{
 
 class Database {
   name = "CTCDB";
+  // method decorator
   @LogMethod(LoggingLevel.DEBUG)
   saveData(data:any){
     console.log(
