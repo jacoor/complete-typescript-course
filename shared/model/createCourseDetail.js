@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function createCourseDetail(_a) {
-    var id = _a.id, url = _a.url, description = _a.description, iconUrl = _a.iconUrl, courseListIcon = _a.courseListIcon, seqNo = _a.seqNo, longDescription = _a.longDescription, comingSoon = _a.comingSoon, isNew = _a.isNew, isOngoing = _a.isOngoing, lessons = _a.lessons;
+    var id = _a.id, url = _a.url, description = _a.description, iconUrl = _a.iconUrl, courseListIcon = _a.courseListIcon, seqNo = _a.seqNo, longDescription = _a.longDescription, comingSoon = _a.comingSoon, isNew = _a.isNew, isOngoing = _a.isOngoing, Lessons = _a.Lessons;
     return {
         id: id,
         url: url,
@@ -13,7 +13,7 @@ function createCourseDetail(_a) {
         comingSoon: comingSoon,
         isNew: isNew,
         isOngoing: isOngoing,
-        lessons: lessons.map(createLessonFromDbModel)
+        lessons: Lessons.map(createLessonFromDbModel)
     };
 }
 exports.createCourseDetail = createCourseDetail;

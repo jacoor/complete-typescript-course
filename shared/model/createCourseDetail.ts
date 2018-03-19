@@ -11,7 +11,7 @@ export function createCourseDetail({
     comingSoon,
     isNew,
     isOngoing,
-    lessons,
+    Lessons,
 }:any): CourseDetail{
   return {
       id,
@@ -24,7 +24,7 @@ export function createCourseDetail({
       comingSoon,
       isNew,
       isOngoing,
-      lessons: lessons.map(createLessonFromDbModel)
+      lessons: Lessons.map(createLessonFromDbModel)
     };
 }
 
