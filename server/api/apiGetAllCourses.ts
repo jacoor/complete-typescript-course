@@ -6,7 +6,8 @@ import * as _ from "lodash";
 import { onError } from "./onError";
 import { onSuccess } from "./onSuccess";
 
-export function apiGetAllCourses (req:Request, res:Response ){
+export function apiGetAllCourses (
+  req:Request, res:Response ){
   findAllCourses()
   // .then(()=>{
     // error thrown here, inside promise chain,
