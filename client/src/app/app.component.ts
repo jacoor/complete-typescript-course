@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from "./services/courses.service";
+import { Observable } from "rxjs";
+import { CourseDetail } from "../../../shared/model/course-detail"
 
 @Component({
   selector: 'app-root',
@@ -7,13 +9,12 @@ import { CoursesService } from "./services/courses.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'app works!';
+  course$: Observable<CourseDetail>;
   constructor (private CoursesService:CoursesService){
 
   }
 
   ngOnInit(){
-    this.CoursesService.loadCourseDetail(1)
-      .subscribe(console.log);
+    this.course$ = this.CoursesService.loadCourseDetail(1);
   }
 }

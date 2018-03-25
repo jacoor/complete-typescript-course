@@ -10,7 +10,7 @@ export class CoursesService {
 
   loadCourseDetail(courseId:number):Observable<CourseDetail>{
     return this.http.get(`/api/courses/${courseId}`)
-      .map(res => res.json());
+      .map(res => res.json().payload);
   }
 
 }
